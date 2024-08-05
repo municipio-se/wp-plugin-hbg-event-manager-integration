@@ -1,18 +1,37 @@
-Event Manager Integration
-==========
+# Helsingborg API Event Manager Integration
 
-Import and display events from [Event Manager API](https://github.com/helsingborg-stad/api-event-manager).
+This plugin is an LTS version of the Helsingborg API Event Manager Integration
+plugin. It allows you to import and display events as well as providing a form
+where users can submit events to the Event Manager.
 
-## Download plugin.
-To download a complete out of the box working plugin without the need to compile or fetch dependencies.  
-Go [here](https://github.com/helsingborg-stad/api-event-manager-integration/releases) and download the `full-release.zip` from the latest version.  
+## Installation
+
+1. Add the following to your `composer.json` file:
+   ```json
+   {
+     "repositories": [
+       {
+         "type": "vcs",
+         "url": "https://github.com/municipio-lts/wp-plugin-hbg-event-manager-integration-2024.git",
+         "only": [
+           "municipio-lts/wp-plugin-hbg-event-manager-integration-2024"
+         ],
+         "no-api": true
+       },
+     ]
+   }
+   ```
+2. Install the package and its dependencies:
+   ```bash
+   composer require municipio-lts/wp-plugin-hbg-event-manager-integration-2024
+   ```
+3. Activate the plugin in WordPress.
 
 ## Getting started
-1. Download & activate plugin
-2. Navigate to Events -> Options (from Wordpress Dashboard)
-3. Fill in 'API url' with your Wordpress API rest URL eg. 'https://your-wordpress-url.com/json/wp/v2/'
-4. Add additional configuration (optional) and save options
-5. Navigate to Events & start import
+1. Navigate to Events -> Options (from Wordpress Dashboard)
+2. Fill in 'API url' with your Wordpress API rest URL eg. 'https://your-wordpress-url.com/json/wp/v2/'
+3. Add additional configuration (optional) and save options
+4. Navigate to Events & start import
 
 ## Shortcodes
 
