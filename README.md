@@ -23,7 +23,7 @@ where users can submit events to the Event Manager.
    ```
 2. Install the package and its dependencies:
    ```bash
-   composer require municipio-lts/wp-plugin-hbg-event-manager-integration-2024
+   composer require municipio-lts/wp-plugin-hbg-event-manager-integration-2024:dev-lts/v2.0.18
    ```
 3. Activate the plugin in WordPress.
 
