@@ -252,6 +252,9 @@ class Events extends \EventManagerIntegration\Entity\CustomPostType
             'socialLinks'               => __('Social links', 'event-integration')
          );
 
+         $data['disableEventHero'] = apply_filters("EventManagerIntegration/DisableEventHero", false);
+         $data['disableEventHeroOverlay'] = apply_filters("EventManagerIntegration/DisableEventHeroOverlay", false);
+
          return $data;
     }
 

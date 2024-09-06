@@ -4,18 +4,18 @@
 @stop
 
 @section('above')
-@if(!empty($event['image_src']))
+@if(!$disableEventHero && !empty($event['image_src']))
     @segment([
         'layout'            => 'full-width',
         'image'             => $event['image_src'],
-        'background'        => 'primary',
+        'background'        => !$disableEventHeroOverlay ? 'primary' : null,
         'textColor'         => 'light',
-        'overlay'           => 'dark',
+        'overlay'           => !$disableEventHeroOverlay ? 'dark' : null,
         'classList'         => ['modularity-event-hero', 'u-margin__bottom--5'],
         'textAlignment'     => 'center',
-        'title'             => get_the_title(),
-        'subTitle'          => 123,
-        'content'           => $event['occasion']['formatted'] ?? false,
+        'title'             => !$disableEventHeroOverlay ? get_the_title() : null,
+        'subTitle'          => !$disableEventHeroOverlay ? 123 : null,
+        'content'           => !$disableEventHeroOverlay ? $event['occasion']['formatted'] ?? false : null,
     ])
     @endsegment
 @endif
