@@ -1,6 +1,8 @@
 @if(!empty($locationInfo['street_address']) || !empty($locationInfo['city']) || !empty($locationInfo['additional_locations']))
     @if($locationInfo)
-        @card([])
+        @card([
+            'context' => 'widget.sidebar-right',
+        ])
             <div class="c-card__body">
                 @include('partials.heading', ['heading' => $eventLang->location])
                 

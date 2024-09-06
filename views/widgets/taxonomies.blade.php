@@ -1,5 +1,7 @@
 @if(!empty($groups) || !empty($categories) || !empty($tags))
-    @card([])
+    @card([
+        'context' => 'widget.sidebar-right',
+    ])
         <div class="c-card__body">
             @if (!empty($groups) && is_array($groups))
                 @typography([

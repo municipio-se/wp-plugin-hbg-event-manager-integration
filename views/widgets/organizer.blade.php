@@ -1,5 +1,7 @@
 @if(!empty($event['organizers']))
-    @card([])
+    @card([
+        'context' => 'widget.sidebar-right',
+    ])
         <div class="c-card__body">
             @include('partials.heading', ['heading' => $eventLang->organizer])
 

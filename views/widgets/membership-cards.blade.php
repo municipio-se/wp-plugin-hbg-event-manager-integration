@@ -1,6 +1,8 @@
 @if(!empty($bookingInfo['membership_cards']))
     @foreach($bookingInfo['membership_cards'] as $card)
-        @card([])
+        @card([
+            'context' => 'widget.sidebar-right',
+        ])
             <div class="c-card__body">
                 @include('partials.heading', ['heading' => $card['post_title']])
 
