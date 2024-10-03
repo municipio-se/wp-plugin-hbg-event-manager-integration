@@ -46,10 +46,6 @@ class EventManagerApi extends \EventManagerIntegration\Parser
                     // Skip check of events diff on error
                     $checkApiDiff = false;
                     $page = false;
-                    error_log('Error fetching events from API:');
-                    foreach ($events->get_error_messages() as $message) {
-                        error_log($message);
-                    }
                     break;
                 } elseif ($events) {
                     // Save events to database
