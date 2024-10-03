@@ -76,6 +76,8 @@ abstract class Parser
 
         // Return WP_Error if response code is not 200 OK or result is empty
         if ($responseCode !== 200 || !is_array($body) || empty($body)) {
+            error_log('Response code: ' . $responseCode);
+            error_log('Response body: ' . json_encode($body));
             return new \WP_Error('error', __('API request failed.', 'event-integration'));
         }
 
