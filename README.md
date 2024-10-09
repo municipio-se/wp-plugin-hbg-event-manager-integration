@@ -1,7 +1,7 @@
 # Helsingborg API Event Manager Integration
 
 This plugin is an LTS version of the Helsingborg API Event Manager Integration
-plugin. It allows you to import and display events as well as providing a form
+plugin v2.0.18. It allows you to import and display events as well as providing a form
 where users can submit events to the Event Manager.
 
 ## Installation
@@ -23,7 +23,7 @@ where users can submit events to the Event Manager.
    ```
 2. Install the package and its dependencies:
    ```bash
-   composer require municipio-lts/wp-plugin-hbg-event-manager-integration-2024:dev-lts/v2.0.18
+   composer require municipio-lts/wp-plugin-hbg-event-manager-integration-2024:dev-main
    ```
 3. Activate the plugin in WordPress.
 
