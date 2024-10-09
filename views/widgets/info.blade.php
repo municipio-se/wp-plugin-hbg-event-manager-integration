@@ -5,7 +5,7 @@
         @include('partials.heading', ['heading' => get_the_title()])
         
         @if(is_array($event['occasions']))
-            <ul aria-owns="single-event-all-occasions">
+            <ul>
                 @foreach(array_slice($event['occasions'], 0, 3) as $occasion)
                     <li>
                         @if($occasion->formatted !== $event['occasion']['formatted'])
@@ -22,7 +22,7 @@
             </ul>
 
             @if(count($event['occasions']) > 3)
-                @typography(['id' => 'single-event-all-occasions'])
+                @typography
                     @link([
                         'href' => $event['eventArchive'],
                         'attributeList' => ['aria-label' => $eventLang->occasionShowAll]
