@@ -8,30 +8,30 @@
             @if(is_array($bookingInfo['additional_ticket_types']))
                 @foreach ($bookingInfo['additional_ticket_types'] as $index => $ticketType)
                     @if(!empty($ticketType['ticket_name']))
-                        @typography(['id' => 'single-event-tickettypes-' . $index])
+                        @typography
                             <strong>{{ $ticketType['ticket_name'] }}</strong>
                         @endtypography
                     @endif
 
-                    <ul role="list" aria-labelledby="single-event-tickettypes-{{$index}}">
+                    <ul>
                         @if(!empty($ticketType['ticket_type']))
-                            <li role="listitem">
-                                <span hidden id="single-event-tickettypes-{{$index}}-type">{{ $eventLang->ticketType }}:</span>
-                                <strong aria-labelledby="single-event-tickettypes-{{$index}}-type">{{ strtolower($ticketType['ticket_type']) === 'seated' ? $eventLang->ticketSeated : $eventLang->ticketStanding }}</strong>
+                            <li>
+                                <span hidden>{{ $eventLang->ticketType }}:</span>
+                                <strong>{{ strtolower($ticketType['ticket_type']) === 'seated' ? $eventLang->ticketSeated : $eventLang->ticketStanding }}</strong>
                             </li>
                         @endif
 
                        @if($ticketType['minimum_price'] && is_array($ticketType['minimum_price']) && array_key_exists('formatted_price', $ticketType['minimum_price']))
-                            <li role="listitem">
-                                <strong id="single-event-tickettypes-{{$index}}-pricemin">{{ $eventLang->priceMin }}:</strong>
-                                <span aria-labelledby="single-event-tickettypes-{{$index}}-pricemin">{{ $ticketType['minimum_price']['formatted_price'] }}</span>
+                            <li>
+                                <strong>{{ $eventLang->priceMin }}:</strong>
+                                <span>{{ $ticketType['minimum_price']['formatted_price'] }}</span>
                             </li>
                         @endif
 
                         @if($ticketType['maximum_price'] && is_array($ticketType['maximum_price']) && array_key_exists('formatted_price', $ticketType['maximum_price']))
-                            <li role="listitem">
-                                <strong id="single-event-tickettypes-{{$index}}-pricemax">{{ $eventLang->priceMax }}:</strong>
-                                <span aria-labelledby="single-event-tickettypes-{{$index}}-pricemax">{{ $ticketType['maximum_price']['formatted_price'] }}</span>
+                            <li>
+                                <strong>{{ $eventLang->priceMax }}:</strong>
+                                <span>{{ $ticketType['maximum_price']['formatted_price'] }}</span>
                             </li>
                         @endif
 

@@ -27,9 +27,9 @@
 
                 @if($locationInfo['additional_locations'])
                     @typography([])
-                        <strong id="single-event-other-locations">{{ $eventLang->locationOthers }}</strong>
+                        <strong>{{ $eventLang->locationOthers }}</strong>
                         @foreach($locationInfo['additional_locations'] as $location)
-                            <p aria-labelledby="single-event-other-locations" class="u-margin__top--2">
+                            <p class="u-margin__top--2">
                                 {{ $location['title'] }} <br/>
                                 {{ $location['street_address'] }} <br/>
                                 {{ $location['postal_code'] }} {{ $location['city'] }}

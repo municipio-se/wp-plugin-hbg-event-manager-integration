@@ -7,57 +7,57 @@
         {{ $eventLang->price }}
     @endtypography
     
-    <ul role="list">
+    <ul>
         @if(isset($bookingInfo['price_adult']['formatted_price']))
-            <li role="listitem">
-                <strong id="single-event-price-adults">{{ $eventLang->priceStandard }}:</strong>
-                <span aria-labelledby="single-event-price-adults">{{ $bookingInfo['price_adult']['formatted_price'] }}</span>
+            <li>
+                <strong>{{ $eventLang->priceStandard }}:</strong>
+                <span>{{ $bookingInfo['price_adult']['formatted_price'] }}</span>
             </li>
         @endif
 
         @if(isset($bookingInfo['price_children']['formatted_price']))
-            <li role="listitem">
-                <strong id="single-event-price-children">>{{ sprintf($eventLang->priceChildren, $bookingInfo['children_age']) }}:</strong>
-                <span aria-labelledby="single-event-price-children">{{ $bookingInfo['price_children']['formatted_price'] }}</span>
+            <li>
+                <strong>{{ sprintf($eventLang->priceChildren, $bookingInfo['children_age']) }}:</strong>
+                <span>{{ $bookingInfo['price_children']['formatted_price'] }}</span>
             </li>
         @endif
 
         @if(isset($bookingInfo['price_senior']['formatted_price']))
-            <li role="listitem">
-                <strong id="single-event-price-seniors">>{{ sprintf($eventLang->priceSeniors, $bookingInfo['senior_age']) }}:</strong>
-                <span aria-labelledby="single-event-price-seniors">{{ $bookingInfo['price_senior']['formatted_price'] }}</span>
+            <li>
+                <strong>{{ sprintf($eventLang->priceSeniors, $bookingInfo['senior_age']) }}:</strong>
+                <span>{{ $bookingInfo['price_senior']['formatted_price'] }}</span>
             </li>
         @endif
 
         @if(isset($bookingInfo['price_student']['formatted_price']))
-            <li role="listitem">
-                <strong id="single-event-price-students">>{{ $eventLang->priceStudents }}:</strong>
-                <span aria-labelledby="single-event-price-students">{{ $bookingInfo['price_student']['formatted_price'] }}</span>
+            <li>
+                <strong>{{ $eventLang->priceStudents }}:</strong>
+                <span>{{ $bookingInfo['price_student']['formatted_price'] }}</span>
             </li>
         @endif
     </ul>
 @endif
 
 @if(!empty($bookingInfo['membership_cards']))
-    @typography(['id' => 'single-event-membership-card'])
+    @typography
         <strong>{{ $eventLang->membershipCardsIncluded }}</strong>
     @endtypography
 
-    <ul role="list" aria-labelledby="single-event-membership-card" class="unlist">
+    <ul class="unlist">
         @foreach($bookingInfo['membership_cards'] as $card)
-            <li role="listitem">{{ $card['post_title'] }}</li>
+            <li>{{ $card['post_title'] }}</li>
         @endforeach
     </ul>
 @endif
 
 @if(!empty($bookingInfo['booking_group']) && is_array($bookingInfo['booking_group']))
-    @typography(['id' => 'single-event-membership-price-groups'])
+    @typography
         <strong>{{ $eventLang->priceGroups }}</strong>
     @endtypography
 
-    <ul role="list" aria-labelledby="single-event-price-groups">
+    <ul>
         @foreach ($bookingInfo['booking_group'] as $group)
-            <li role="listitem">
+            <li>
                 {{ sprintf(
                     $eventLang->priceGroupsRange,
                     $group['min_persons'],
@@ -77,28 +77,28 @@
     ])
         {{ $eventLang->priceRange }}
     @endtypography
-    <ul role="list">
+    <ul>
         @if(isset($bookingInfo['price_range']['seated_minimum_price']['formatted_price']))
-            <li role="listitem">
-                <strong id="single-event-price-seated-min">{{ $eventLang->priceSeatedMin }}</strong> <span aria-labelledby="single-event-price-seated-min">{{ $bookingInfo['price_range']['seated_minimum_price']['formatted_price'] }}</span>
+            <li>
+                <strong>{{ $eventLang->priceSeatedMin }}</strong> <span>{{ $bookingInfo['price_range']['seated_minimum_price']['formatted_price'] }}</span>
             </li>
         @endif
 
         @if(isset($bookingInfo['price_range']['seated_maximum_price']['formatted_price']))
-            <li role="listitem">
-                <strong id="single-event-price-seated-max">{{ $eventLang->priceSeatedMax }}</strong>  <span aria-labelledby="single-event-price-seated-max">{{ $bookingInfo['price_range']['seated_maximum_price']['formatted_price'] }}</span>
+            <li>
+                <strong>{{ $eventLang->priceSeatedMax }}</strong>  <span>{{ $bookingInfo['price_range']['seated_maximum_price']['formatted_price'] }}</span>
             </li>
         @endif
 
         @if(isset($bookingInfo['price_range']['standing_minimum_price']['formatted_price']))
-            <li role="listitem">
-                <strong id="single-event-price-standing-min">{{ $eventLang->priceStandingMin }}</strong>  <span aria-labelledby="single-event-price-standing-min">{{ $bookingInfo['price_range']['standing_minimum_price']['formatted_price'] }}</span>
+            <li>
+                <strong>{{ $eventLang->priceStandingMin }}</strong>  <span>{{ $bookingInfo['price_range']['standing_minimum_price']['formatted_price'] }}</span>
             </li>
         @endif
 
         @if(isset($bookingInfo['price_range']['standing_maximum_price']['formatted_price']))
-            <li role="listitem">
-                <strong id="single-event-price-seated-max">{{ $eventLang->priceStandingMax }}</strong>  <span aria-labelledby="single-event-price-standing-max">{{ $bookingInfo['price_range']['standing_maximum_price']['formatted_price'] }}</span>
+            <li>
+                <strong>{{ $eventLang->priceStandingMax }}</strong>  <span>{{ $bookingInfo['price_range']['standing_maximum_price']['formatted_price'] }}</span>
             </li>
         @endif
     </ul>
@@ -116,14 +116,14 @@
     @if(!empty($bookingInfo['additional_ticket_retailers']) && is_array($bookingInfo['additional_ticket_retailers']))
         @foreach ($bookingInfo['additional_ticket_retailers'] as $index => $retailer)
             @if(!empty($retailer['retailer_name']))
-                @typography(['id' => 'single-event-retailer-name'])
+                @typography
                     <strong>{{ $retailer['retailer_name'] }}</strong>
                 @endtypography
             @endif
 
-            <ul role="list" aria-labelledby="single-event-retailer" class="unlist">
+            <ul class="unlist">
                 @if($parsedUrl = parse_url($retailer['booking_url']))
-                    <li role="listitem">
+                    <li>
                         @link(['href' => $retailer['booking_url'], 
                                'attributeList' => ['aria-label' => $eventLang->bookingLinkAriaLabel]
                             ])
@@ -133,16 +133,16 @@
                 @endif
 
                 @if(!empty($retailer['ticket_release_date']))
-                    <li role="listitem">
-                        <strong id="single-event-ticket-release-date">{{ $eventLang->ticketReleaseDate }}</strong> 
-                        <span aria-labelledby="single-event-price-release-date">{{ $retailer['ticket_release_date'] }}</span>
+                    <li>
+                        <strong>{{ $eventLang->ticketReleaseDate }}</strong> 
+                        <span>{{ $retailer['ticket_release_date'] }}</span>
                     </li>
                 @endif
 
                 @if(!empty($retailer['ticket_stop_date']))
-                    <li role="listitem">
-                        <strong id="single-event-ticket-stop-date">{{ $eventLang->ticketStopDate }}</strong> 
-                        <span aria-labelledby="single-event-price-stop-date">{{ $retailer['ticket_stop_date'] }}</span>
+                    <li>
+                        <strong>{{ $eventLang->ticketStopDate }}</strong> 
+                        <span>{{ $retailer['ticket_stop_date'] }}</span>
                     </li>
                 @endif
             </ul>

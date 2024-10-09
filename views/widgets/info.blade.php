@@ -5,9 +5,9 @@
         @include('partials.heading', ['heading' => get_the_title()])
         
         @if(is_array($event['occasions']))
-            <ul role="list" aria-owns="single-event-all-occasions">
+            <ul aria-owns="single-event-all-occasions">
                 @foreach(array_slice($event['occasions'], 0, 3) as $occasion)
-                    <li role="listitem">
+                    <li>
                         @if($occasion->formatted !== $event['occasion']['formatted'])
                             @link([
                                 'href' => $occasion->permalink
@@ -33,22 +33,22 @@
             @endif
         @endif
 
-        <ul role="list" class="unlist u-margin__top--3">
+        <ul class="unlist u-margin__top--3">
             @if ($event['occasion']['duration_formatted'])
-                <li role="listitem"><strong id="single-event-duration">{{ $eventLang->occasionDuration }}:</strong> <span aria-labelledby="single-event-duration">{{ $event['occasion']['duration_formatted'] }}</span></li>
+                <li><strong>{{ $eventLang->occasionDuration }}:</strong> <span>{{ $event['occasion']['duration_formatted'] }}</span></li>
             @endif
 
             @if($event['age_group'])
-                <li role="listitem"><strong id="single-event-agegroup">{{ $eventLang->age }}:</strong> <span aria-labelledby="single-event-agegroup">{{ $event['age_group'] }}</span></li>
+                <li><strong>{{ $eventLang->age }}:</strong> <span>{{ $event['age_group'] }}</span></li>
             @endif
         </ul>
         
         @if($locationInfo['accessibility'])
             <div class="u-margin__top--3">
-                <strong id="single-event-accessibility">{{ $eventLang->locationAccessibility }}</strong>
-                <ul role="list" aria-labelledby="single-event-accessibility">
+                <strong>{{ $eventLang->locationAccessibility }}</strong>
+                <ul>
                     @foreach($eventLang->accessibilityLabels as $accessibility)
-                        <li role="listitem">{{ $accessibility }}</li>
+                        <li>{{ $accessibility }}</li>
                     @endforeach
                 </ul>
             </div>
