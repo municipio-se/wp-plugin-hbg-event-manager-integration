@@ -967,10 +967,10 @@
   resolved "https://registry.npmjs.org/@discoveryjs/json-ext/-/json-ext-0.5.6.tgz"
   integrity sha512-ws57AidsDvREKrZKYffXddNkyaF14iHNHm8VQnZH6t99E8gczjNN0GpvcGny0imC80yQ0tHz1xVUKk/KFQSUyA==
 
-"@helsingborg-stad/hbg-react@^1.0.18":
-  version "1.0.18"
-  resolved "https://npm.pkg.github.com/download/@helsingborg-stad/hbg-react/1.0.18/0026bb35f2a63c71285b13232a3ea3816ba5e635"
-  integrity sha512-6iWUoNQc1X766Q6z/H6gpk7eyaS8RFeOQdHHx+t+tMSyGhaQ1/CIzD0hbQExl/ESnc8aOQi6t8g06+k/123Sgg==
+"@helsingborg-stad/hbg-react@^1.0.19":
+  version "1.0.21"
+  resolved "https://npm.pkg.github.com/download/@helsingborg-stad/hbg-react/1.0.21/938f9fbf11119a6e9d2b1f25fdaf88dcad98fe88"
+  integrity sha512-olq79exO0rzW4rjtD3zAdDIKz5KU9hn1yBMvdS70lUPHczPbm1CYbSqo+uR2xapYmrOBawSvtLFqKz57SjduNA==
   dependencies:
     classnames "^2.3.1"
     date-fns "^1.30.1"
