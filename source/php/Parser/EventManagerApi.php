@@ -91,9 +91,10 @@ class EventManagerApi extends \EventManagerIntegration\Parser
         error_log(var_export('removeExpiredOccasions COMPLETE', true));
         $this->removeExpiredEvents();
         error_log(var_export('removeExpiredEvents COMPLETE', true));
-
+        
         // Sync category translations
         \EventManagerIntegration\Helper\Translations::defineCategoryTranslations();
+        error_log(var_export('Sync category translations COMPLETE', true));
     }
 
     /**

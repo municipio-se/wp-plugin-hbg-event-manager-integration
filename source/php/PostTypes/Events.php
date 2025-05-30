@@ -705,6 +705,7 @@ class Events extends \EventManagerIntegration\Entity\CustomPostType
         if ($apiUrl = \EventManagerIntegration\Helper\ApiUrl::buildApiUrl()) {
             $importer = new \EventManagerIntegration\Parser\EventManagerApi($apiUrl);
             $data = $importer->getCreatedData();
+            error_log(var_export(['importEvents $data'=>$data], true));
             wp_send_json($data);
         }
 
