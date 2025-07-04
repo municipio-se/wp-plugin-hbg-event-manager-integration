@@ -72,6 +72,15 @@ add_filter(
     3
 );
 
+function api_event_manager_integration_log(...$args) {
+    if(!defined('EVENTMANAGERINTEGRATION_DEBUG') || !constant('EVENTMANAGERINTEGRATION_DEBUG')) {
+        return;
+    }
+    foreach($args as $arg) {
+        error_log(var_export($arg, true));
+    }
+}
+
 // Activation & deactivation hooks
 register_activation_hook(plugin_basename(__FILE__), '\EventManagerIntegration\Cron::addCronJob');
 register_deactivation_hook(plugin_basename(__FILE__), '\EventManagerIntegration\Cron::removeCronJob');

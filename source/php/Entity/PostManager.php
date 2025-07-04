@@ -257,12 +257,16 @@ abstract class PostManager
             return false;
         }
 
-         if (!$this->isUrl($url)) {
+        api_event_manager_integration_log('ID: ' . $this->ID);
+        
+        if (!$this->isUrl($url)) {
             return false;
         } 
 
         // Upload path
         $uploadDir = wp_upload_dir()['basedir'].'/events/' . date("Y"). "/" . date("m");
+
+        api_event_manager_integration_log($url, $uploadDir);
 
         //Create dir
         if (!is_dir($uploadDir)) {
@@ -290,6 +294,7 @@ abstract class PostManager
             if(!$imgContent) {
                 return; 
             }
+            api_event_manager_integration_log('image fetched');
 
             // Save file to temp
             $tempStoreFile = fopen($uploadDir . '/' . $filenameTemp, 'w');
@@ -309,6 +314,7 @@ abstract class PostManager
             // Move to real extension
             $filePath = $uploadDir . '/' . $filename . '.' . $filetype;
             rename($uploadDir . '/' . $filenameTemp, $filePath);
+            api_event_manager_integration_log(compact('filePath'));
 
             // Insert the file to media library
             $attachmentId = wp_insert_attachment(
@@ -323,6 +329,7 @@ abstract class PostManager
                 $filePath, 
                 $this->ID
             );
+            api_event_manager_integration_log(compact('attachmentId'));
 
             if($attachmentId) {
                 update_post_meta($attachmentId, 'event-manager-media', 1); //Filter in [/Admin/MediaLibrary.php]
