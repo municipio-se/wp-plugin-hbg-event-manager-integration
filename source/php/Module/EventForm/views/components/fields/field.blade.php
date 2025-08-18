@@ -9,5 +9,9 @@
     'suffix' => $field['suffix'] ?? '',
     'helperText' => $field['description'] ?? '',
     'placeholder' => $field['placeholder'] ?? '',
+    'datalist' => $field['datalist'] ?? null,
+    'fieldAttributeList' => [
+        'data-source' => !empty($field['dataSource']) ? json_encode($field['dataSource']) : null,
+    ],
 ], !empty($field['props']) ? (array) $field['props'] : []))
 @endfield

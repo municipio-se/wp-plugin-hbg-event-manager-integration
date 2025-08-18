@@ -1,6 +1,7 @@
 let sentForm = false;
 
 const eventFormSubmit = {
+    debugMode: false,
     setupFormSubmit: () => {
         const forms = document.querySelectorAll('.js-event-form');
         forms.forEach(form => {
@@ -30,6 +31,7 @@ const eventFormSubmit = {
 
                 const formUserGroups = formData.user_groups.join(',');
 
+                if (formData.event_organizer) {
                 if (formData.event_organizer === 'new') {
                     const organizerData = { title: '', phone: '', email: '', user_groups: formUserGroups };
                     Object.keys(organizerData).forEach(key => {
@@ -51,6 +53,34 @@ const eventFormSubmit = {
                     formRequests.push([]);
                 }
 
+                } else {
+                    const organizerTitleInput = form.querySelector('input[name="organizer-title"]');
+                    const organizerTitleDatalist = organizerTitleInput?.list;
+                    const selectedOrganizer = organizerTitleDatalist && organizerTitleInput?.value && organizerTitleDatalist.querySelector(`option[value="${organizerTitleInput.value}"]`);
+
+                    if (!selectedOrganizer) {
+                        const organizerData = { title: '', phone: '', email: '', user_groups: formUserGroups };
+                        Object.keys(organizerData).forEach(key => {
+                            
+                            const organizerField = form.querySelector(`[name="organizer-${key}"]`);
+                            if (organizerField) {
+                                organizerData[key] = organizerField.value;
+                            } else if(key === 'user_groups') {
+                                organizerData['user_groups'] = formUserGroups;
+                            }
+                        });
+
+                        formRequests.push(eventFormSubmit.submitFormData(organizerData, 'submit_organizer'));
+                    } else {
+                        formData['organizers'] = [{
+                            organizer: selectedOrganizer.dataset.id,
+                            main_organizer: true
+                        }];
+                        formRequests.push([]);
+                    }
+                }
+
+                if (formData.event_location) {
                 if (formData.event_location === 'new') {
                     const locationData = { title: '', street_address: '', city: '', postal_code: '', user_groups: formUserGroups };
                     Object.keys(locationData).forEach(key => {
@@ -66,6 +96,33 @@ const eventFormSubmit = {
                 } else {
                     formData['location'] = formData['event_existing_location'];
                     formRequests.push([]);
+                }
+                } else {
+                    const locationTitleInput = form.querySelector('input[name="location-title"]');
+                    const locationTitleDatalist = locationTitleInput?.list;
+                    const selectedLocation = locationTitleDatalist && locationTitleInput?.value && locationTitleDatalist.querySelector(`option[value="${locationTitleInput.value}"]`);
+    
+                    if (!selectedLocation) {
+                        const locationData = { title: '', street_address: '', city: '', postal_code: '', user_groups: formUserGroups };
+                        Object.keys(locationData).forEach(key => {
+                            const locationField = form.querySelector(`[name="location-${key.replace('_', '-')}"]`);
+                            if (locationField) {
+                                locationData[key] = locationField.value;
+                            } else if(key === 'user_groups') {
+                                locationData['user_groups'] = formUserGroups;
+                            }
+                        });
+    
+                        formRequests.push(eventFormSubmit.submitFormData(locationData, 'submit_location'));
+                    } else {
+                        formData['location'] = selectedLocation.dataset.id;
+                        formRequests.push([]);
+                    }
+                }
+
+                if (eventFormSubmit.debugMode) {
+                    submitButton.disabled = false;
+                    return;
                 }
 
                 Promise.all(formRequests)
@@ -126,17 +183,27 @@ const eventFormSubmit = {
         return formData;
     },
     submitForm: (body) => {
+        if (eventFormSubmit.debugMode) {
+            console.log(body);
+            // return Promise.resolve({});
+        }
         return new Promise((resolve, reject) => {
             if (!eventintegration?.ajaxurl) {
                 return reject('[submitImageData] No ajax url defined');
             }
-            fetch(eventintegration.ajaxurl,
-                {
+            const result = eventFormSubmit.debugMode
+                ? Promise.resolve().then(() => {
+                    resolve({ success: true, data: { id: '123', phone: '123', email: 'abc@example.com' } })
+                })
+                : fetch(eventintegration.ajaxurl, {
                     method: 'POST',
                     body
-                }).then(res => res.json())
-                .then(json => resolve(json))
-                .then(() => {
+                })
+                .then(res => res.json())
+                .then(json => resolve(json));
+            
+            result.then(() => {
+                resolve({ success: true, data: { id:'123', phone: '123', email:'abc@example.com' } })
                     eventFormSubmit.formSentHandler();
                 })
                 .catch(err => {

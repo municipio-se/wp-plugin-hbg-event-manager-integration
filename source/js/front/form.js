@@ -14,6 +14,7 @@ const eventForm = {
             );
             eventForm.setupRepeaters(form);
             eventForm.setupRemoteSelect(form, eventintegration, eventIntegrationFront ?? {});
+            eventForm.setupDatalists(form, eventIntegrationFront ?? {});
         });
     },
     setupConditionalFields: (form, field) => {
@@ -194,6 +195,35 @@ const eventForm = {
                 };
                 fetchNextPage();
             }
+        });
+    },
+    setupDatalists: (form) => {
+        const datalistsWithLinkedFields = form.querySelectorAll('datalist[data-linked-fields]');
+        datalistsWithLinkedFields.forEach((datalist) => {
+            const linkedFields = JSON.parse(datalist.dataset.linkedFields);
+            form.querySelectorAll('input[list=' + datalist.id + ']').forEach((input) => {
+                let debounceTimeout;
+                input.addEventListener('input', () => {
+                    clearTimeout(debounceTimeout);
+                    debounceTimeout = setTimeout(() => {
+                        const selectedOption = datalist.querySelector('option[value="' + input.value + '"]');
+                        linkedFields.forEach((linkedFieldName) => {
+                            const linkedField = form.querySelector(
+                                `input[name=${linkedFieldName}]`
+                            );
+                            if (linkedField) {
+                                const value = selectedOption && selectedOption.dataset.linkedFields && JSON.parse(
+                                    selectedOption.dataset.linkedFields
+                                )[linkedFieldName] || ''
+                                if (selectedOption) {
+                                    linkedField.value = value;
+                                }
+                                linkedField.disabled = !!selectedOption && !!value;
+                            }
+                        });
+                    }, 300);
+                });
+            });
         });
     },
     fetchSelectItems: (url) => {

@@ -1,10 +1,10 @@
 {
-  "js/event-integration-module-event.css": "js/event-integration-module-event.5cae7e64.css",
-  "js/event-integration-module-event.js": "js/event-integration-module-event.60a2fa7bb9ce212ffe90.js",
-  "js/event-integration-front.js": "js/event-integration-front.92d547485959064d3d6c.js",
+  "js/event-integration-module-event.css": "js/event-integration-module-event.cd7ee090.css",
+  "js/event-integration-module-event.js": "js/event-integration-module-event.b11703e7908576612541.js",
+  "js/event-integration-front.js": "js/event-integration-front.5291463359cdf86742ff.js",
   "js/event-integration-admin.js": "js/event-integration-admin.99b27d251bb86899d096.js",
   "css/event-manager-integration.css": "css/event-manager-integration.767a9863.css",
   "css/event-manager-integration-admin.css": "css/event-manager-integration-admin.1e4b3c65.css",
-  "js/event-integration-react.js": "js/event-integration-react.237629b75225d6aa1271.js",
-  "js/event-integration-react-dom.js": "js/event-integration-react-dom.a600f7a5d09922bd5c12.js"
+  "js/event-integration-react.js": "js/event-integration-react.caa94d99996da803031f.js",
+  "js/event-integration-react-dom.js": "js/event-integration-react-dom.7ecedc2b029ae4e2f165.js"
 }
