@@ -62,7 +62,7 @@ abstract class Parser
                 'referrer' => get_home_url(),
             ),
         );
-        error_log(var_export(['wp_remote_get' => [$url, $args]], true));
+        // error_log(var_export(['wp_remote_get' => [$url, $args]], true));
         $request = wp_remote_get($url, $args);
         $responseCode = wp_remote_retrieve_response_code($request);
         $body = wp_remote_retrieve_body($request);
@@ -72,26 +72,26 @@ abstract class Parser
 
         // Return null if the request was successful but result is empty
         if (isset($body['code']) && $body['code'] === 'empty_result') {
-            error_log(var_export([
-                '$body["code"]' => $body['code'],
-            ], true));
+            // error_log(var_export([
+            //     '$body["code"]' => $body['code'],
+            // ], true));
             return null;
         }
 
         // Return WP_Error if response code is not 200 OK or result is empty
         if ($responseCode !== 200 || !is_array($body) || empty($body)) {
-            error_log(var_export([
-                '$responseCode !== 200' => $responseCode !== 200,
-                '!is_array($body)' => !is_array($body),
-                'empty($body)' => empty($body),
-            ], true));
+            // error_log(var_export([
+            //     '$responseCode !== 200' => $responseCode !== 200,
+            //     '!is_array($body)' => !is_array($body),
+            //     'empty($body)' => empty($body),
+            // ], true));
             do_action('ApiEventManagerIntegration/requestApiError', $responseCode, $body, $url);
             return new \WP_Error('error', __('API request failed.', 'event-integration'));
         }
 
-        error_log(var_export([
-            'count($body)' => count($body),
-        ], true));
+        // error_log(var_export([
+        //     'count($body)' => count($body),
+        // ], true));
 
         return $body;
     }

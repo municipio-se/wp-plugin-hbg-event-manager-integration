@@ -79,22 +79,22 @@ class EventManagerApi extends \EventManagerIntegration\Parser
 
         } while (count($languages) > $i);
 
-        error_log(var_export('SAVING COMPLETE', true));
+        // error_log(var_export('SAVING COMPLETE', true));
 
         // Delete events that has been deleted from the API
         if ($checkApiDiff === true && !empty($eventIds)) {
             $this->removeDeletedEvents($eventIds);
         }
-        error_log(var_export('removeDeletedEvents COMPLETE', true));
+        // error_log(var_export('removeDeletedEvents COMPLETE', true));
         // Clean up
         $this->removeExpiredOccasions();
-        error_log(var_export('removeExpiredOccasions COMPLETE', true));
+        // error_log(var_export('removeExpiredOccasions COMPLETE', true));
         $this->removeExpiredEvents();
-        error_log(var_export('removeExpiredEvents COMPLETE', true));
+        // error_log(var_export('removeExpiredEvents COMPLETE', true));
         
         // Sync category translations
         \EventManagerIntegration\Helper\Translations::defineCategoryTranslations();
-        error_log(var_export('Sync category translations COMPLETE', true));
+        // error_log(var_export('Sync category translations COMPLETE', true));
     }
 
     /**
