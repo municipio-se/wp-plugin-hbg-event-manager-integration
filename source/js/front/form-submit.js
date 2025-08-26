@@ -199,8 +199,14 @@ const eventFormSubmit = {
                     method: 'POST',
                     body
                 })
-                .then(res => res.json())
-                .then(json => resolve(json));
+                    .then(res => res.json())
+                    .then(json => resolve(json))
+                    .then(data => {
+                        if (!data.success) {
+                            throw new Error(data.message || 'Unknown error occurred');
+                        }
+                        return data;
+                    })
             
             result.then(() => {
                     eventFormSubmit.formSentHandler();
