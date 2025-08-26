@@ -145,7 +145,7 @@ const eventFormSubmit = {
                         }
 
                         const errorResponses = [organizerResponse, locationResponse].filter(x => !Array.isArray(x) && !x.success).map(x => x.data);
-                        if (!errorResponses.length > 0) {
+                        if ((errorResponses.length === 0)) {
                             eventFormSubmit.submitFormData(formData, 'submit_event').then(response => {
                                 if (response.success) {
                                     form.reset();
@@ -203,7 +203,6 @@ const eventFormSubmit = {
                 .then(json => resolve(json));
             
             result.then(() => {
-                resolve({ success: true, data: { id:'123', phone: '123', email:'abc@example.com' } })
                     eventFormSubmit.formSentHandler();
                 })
                 .catch(err => {
