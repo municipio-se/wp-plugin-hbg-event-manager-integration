@@ -200,15 +200,18 @@ const eventFormSubmit = {
                     body
                 })
                     .then(res => res.json())
-                    .then(json => resolve(json))
-                    .then(data => {
-                        if (!data.success) {
-                            throw new Error(data.message || 'Unknown error occurred');
-                        }
-                        return data;
-                    })
             
-            result.then(() => {
+            result.then(json => console.log(json));
+            
+            result
+                .then(data => {
+                    if (!data.success) {
+                        throw new Error(data.message || 'Unknown error occurred');
+                    }
+                    return data;
+                })
+                .then(json => resolve(json))
+                .then(() => {
                     eventFormSubmit.formSentHandler();
                 })
                 .catch(err => {
