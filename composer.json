@@ -1,5 +1,5 @@
 {
-    "name": "municipio-lts/wp-plugin-hbg-event-manager-integration-2024",
+    "name": "municipio/wp-plugin-hbg-event-manager-integration",
     "description": "Import and display events from Event Manager API.",
     "type": "wordpress-plugin",
     "license": "MIT",
