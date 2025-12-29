@@ -31,6 +31,5 @@
     },
     "scripts": {
         "test": "@php vendor/bin/phpunit"
-    },
-    "version": "2.0.18"
+    }
 }
