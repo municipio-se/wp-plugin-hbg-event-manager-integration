@@ -1,5 +1,3 @@
-# Helsingborg API Event Manager Integration
+# HBG Event Manager Integration
 
-This plugin is an LTS version of the Helsingborg API Event Manager Integration
-plugin v2.0.18. It allows you to import and display events as well as providing a form
-where users can submit events to the Event Manager.
+This plugin is a [Municipio LTS](https://github.com/municipio-se/municipio-lts) version of the [Helsingborg API Event Manager Integration plugin v2.0.18](https://github.com/municipio-se/wp-plugin-hbg-event-manager-integration).
